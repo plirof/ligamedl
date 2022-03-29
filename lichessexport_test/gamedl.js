@@ -106,20 +106,7 @@ function createLink(){
     lte.value = url;
 }
 
-//capital letter  JON
-function createLink2ucfirst22222(){
-    url = "https://lichess.org/games/export/" + SECTIONS.username.input.getText() + sectionsAsUrl();
-    
-    le2 = ge("linkUC");
-    le2.href = url;
-    le2.innerHTML = url;
-    lte2 = ge("linktextUC");
-    lte2.value = url;
 
-    usernameUC = ge("usernameUC");
-    usernameUC.value = SECTIONS.username.input.getText();
-
-}
 
 function build(){
     let sectionse = ge("sections");
@@ -156,7 +143,8 @@ function replaceAll(string, search, replace) {
 
 function createLink2ucfirst(){
     ///https://stackoverflow.com/questions/39682465/javascript-writing-to-download-stream
-    url = "https://lichess.org/games/export/" + SECTIONS.username.input.getText() + sectionsAsUrl();    
+    //url = "https://lichess.org/games/export/" + SECTIONS.username.input.getText() + sectionsAsUrl();    //old API
+    url = "https://lichess.org/api/games/user/" + SECTIONS.username.input.getText() + sectionsAsUrl();  //new API 
     // We use fetch instead of xhr that has streaming support
 
 

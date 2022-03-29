@@ -98,7 +98,8 @@ function setPerfs(checked){
 }
 
 function createLink(){
-    url = "https://lichess.org/games/export/" + SECTIONS.username.input.getText() + sectionsAsUrl();
+    url = "https://lichess.org/games/export/" + SECTIONS.username.input.getText() + sectionsAsUrl(); //old API
+    //url = "https://lichess.org/api/games/user/" + SECTIONS.username.input.getText() + sectionsAsUrl();  //new API
     le = ge("link");
     le.href = url;
     le.innerHTML = url;
@@ -141,12 +142,14 @@ function createLink2ucfirst(){
     if(pending) return;
     pending = true;
     ///https://stackoverflow.com/questions/39682465/javascript-writing-to-download-stream
-    url = "https://lichess.org/games/export/" + SECTIONS.username.input.getText() + sectionsAsUrl();    
+    //url = "https://lichess.org/games/export/" + SECTIONS.username.input.getText() + sectionsAsUrl();    //old API
+    url = "https://lichess.org/api/games/user/" + SECTIONS.username.input.getText() + sectionsAsUrl();  //new API
     // We use fetch instead of xhr that has streaming support
 
 
     Promise.all([
-      fetch(url, { mode: 'no-cors'}).then(x => x.text())
+      //fetch(url, { mode: 'no-cors'}).then(x => x.text()) //fetches EMPTY response when remote
+      fetch(url).then(x => x.text())
     ]).then(([sampleResp]) => {
       
       var username1=SECTIONS.username.input.getText();
