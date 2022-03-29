@@ -117,6 +117,8 @@ function build(){
     }
 }
 
+var pending = false;
+
 function download(filename, text) {
     //https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
   var element = document.createElement('a');
@@ -136,6 +138,8 @@ function replaceAll(string, search, replace) {
 }
 
 function createLink2ucfirst(){
+    if(pending) return;
+    pending = true;
     ///https://stackoverflow.com/questions/39682465/javascript-writing-to-download-stream
     url = "https://lichess.org/games/export/" + SECTIONS.username.input.getText() + sectionsAsUrl();    
     // We use fetch instead of xhr that has streaming support
@@ -153,6 +157,7 @@ function createLink2ucfirst(){
       sampleResp=replaceAll(sampleResp,username1, username1ucfirst);  
       console.log(sampleResp);
       download(username1ucfirst+".pgn", sampleResp);
+      pending = false;
     });
 } // end of function createLink2ucfirst(){
 
