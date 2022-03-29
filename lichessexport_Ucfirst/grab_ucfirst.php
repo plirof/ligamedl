@@ -1,4 +1,5 @@
 <?php
+
 $url1='https://lichess.org/games/export/lachess100?since=1644876000000&until=1648501200000&perfType=blitz,rapid,classical,correspondence&opening=true';
 
 $user="lachess100";
@@ -23,6 +24,7 @@ if (@$_REQUEST["usernameUC"]!="") {
     //$temp_keywords_pattern='u12|u99|etc';
  }
 
+header("Content-disposition: attachment; filename=\"".$user.".pgn\"");
 
 function grabURL($path){
     $ch = curl_init();
@@ -46,7 +48,9 @@ $response=grabURL($url);
 //echo "<hr><pre>".$response."</pre>";
 
 $response =str_replace($user, ucfirst($user), $response, $count);
-echo "<hr><pre>".$response."</pre>";
+//echo "<hr><pre>".$response."</pre>";
+//echo $url;
+echo $response;
 //echo "<hr><pre>".ucfirst($response)."</pre>";
 
 ?>
