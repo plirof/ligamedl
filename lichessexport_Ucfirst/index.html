@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+License
+
+Copyright (c) 2018 smartchessguiapp
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lichess Game Download Link Creator</title>
+    <link rel="stylesheet" href="gamedl.css">    
+</head>
+<body>
+    <div class="apilink">
+        <a target="_blank" href="https://lichess.org/api#operation/gamesExportUsername">Lichess game download API</a>
+    </div>    
+    <div style="padding: 5px; margin: 5px; background-color: #ffa;">
+        <div style="font-size: 18px;">
+            <a href="https://easychess.herokuapp.com/?ubertab=play">Play 8-Piece chess on easychess</a>
+        </div>
+        <div style="font-size: 18px; margin-top: 3px;">
+            <a href="https://discord.gg/RKJDzJj">Join easychess Discord</a>
+        </div>
+    </div>
+    <div id="sections">
+        <div class="section">
+            <div class="sectionhead">
+                <span class="explain">Sections</span><br><span class="note">check to include section in link</span>
+            </div><div class="sectionbody"><span class="explain">Section values</span></div>
+        </div>
+    </div>
+    <div class="control">
+        <input type="button" value="Unset all rating categories" onclick="setPerfs(false)">
+        <input type="button" value="Set all rating categories" onclick="setPerfs(true)">
+    </div>    
+    <hr>
+    <div class="control">
+            <input type="button" class="createlink" value="Create link" onclick="createLink()">
+            <input type="button" class="createlink" value="Create link-Upper Case" onclick="createLink2ucfirst()">
+            <a id="link" href=""></a><br>
+            <input type="text" id="linktext" class="linktext">
+            <a id="linkUC" href=""></a><br>
+
+            <hr>
+            <hr>
+            <form action=grab_ucfirst.php target="_blank">
+                <input type="text" name="usernameUC" id="usernameUC" class="usernameUC">    
+                <input type="text" name="linktextUC" id="linktextUC" class="linktextUC">    
+                <input type="submit" value="Fetch PGNs with UCFirst">
+            </form>
+            <hr>
+    </div>
+
+    <hr>
+    <i>Source code: <a target="_blank" href="https://github.com/smartchessguiapp/ligamedl">https://github.com/smartchessguiapp/ligamedl</a></i>
+    
+    <script src="inputwidget.js"></script>
+    <script src="gamedl.js"></script>
+</body>
+</html>
