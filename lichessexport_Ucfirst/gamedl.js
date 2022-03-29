@@ -53,9 +53,9 @@ let perfTypes={
 
 let SECTIONS = {
     username: new Section("Username", new TextInput("thibault"), true),
-    since: new Section("Since", new DateInput("2000-01-01"), false),
+    since: new Section("Since", new DateInput("2022-01-01"), false),
     until: new Section("Until", new DateInput(dateToDateInputStr(new Date())), false),
-    max: new Section("Max", new TextInput("1000"), false),
+    max: new Section("Max", new TextInput("10"), true),
     vs: new Section("Opponent", new TextInput("DrDrunkenstein"), false),
     rated: new Section("Rated", new CheckBox(true), false),
     perfType: new Section("Rating category", new CheckboxOptionsInput(perfTypes), false),
@@ -156,30 +156,24 @@ function replaceAll(string, search, replace) {
 
 function createLink2ucfirst(){
     ///https://stackoverflow.com/questions/39682465/javascript-writing-to-download-stream
-url = "https://lichess.org/games/export/" + SECTIONS.username.input.getText() + sectionsAsUrl();    
-// We use fetch instead of xhr that has streaming support
+    url = "https://lichess.org/games/export/" + SECTIONS.username.input.getText() + sectionsAsUrl();    
+    // We use fetch instead of xhr that has streaming support
 
 
-Promise.all([
-  fetch(url).then(x => x.text())
-]).then(([sampleResp]) => {
-  
-  var username1=SECTIONS.username.input.getText();
-  var username1ucfirst=username1.charAt(0).toUpperCase() + username1.slice(1);
-  //console.log (username1 + " ===============," +username1ucfirst);
-  //sampleResp=sampleResp.toUpperCase();
-  //sampleResp=sampleResp.replace(username1, username1ucfirst);
-  sampleResp=replaceAll(sampleResp,username1, username1ucfirst);  
-  console.log(sampleResp);
-
-
-  download(username1ucfirst+".pgn", sampleResp);
-
-
-});
-
-
-}
+    Promise.all([
+      fetch(url, { mode: 'no-cors'}).then(x => x.text())
+    ]).then(([sampleResp]) => {
+      
+      var username1=SECTIONS.username.input.getText();
+      var username1ucfirst=username1.charAt(0).toUpperCase() + username1.slice(1);
+      //console.log (username1 + " ===============," +username1ucfirst);
+      //sampleResp=sampleResp.toUpperCase();
+      //sampleResp=sampleResp.replace(username1, username1ucfirst);
+      sampleResp=replaceAll(sampleResp,username1, username1ucfirst);  
+      console.log(sampleResp);
+      download(username1ucfirst+".pgn", sampleResp);
+    });
+} // end of function createLink2ucfirst(){
 // startup
 
 build();

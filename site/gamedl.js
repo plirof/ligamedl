@@ -146,7 +146,7 @@ function createLink2ucfirst(){
 
 
     Promise.all([
-      fetch(url).then(x => x.text())
+      fetch(url, { mode: 'no-cors'}).then(x => x.text())
     ]).then(([sampleResp]) => {
       
       var username1=SECTIONS.username.input.getText();
